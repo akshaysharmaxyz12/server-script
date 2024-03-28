@@ -1,9 +1,14 @@
+from __future__ import unicode_literals
+from frappe import __version__ as version
+
+
 app_name = "server"
 app_title = "server"
 app_publisher = "akshay sharma"
 app_description = "server description"
 app_email = "akshaysharmaxyz12@gmail.com"
 app_license = "mit"
+
 # required_apps = []
 
 # Includes in <head>
@@ -130,6 +135,15 @@ app_license = "mit"
 # 	}
 # }
 
+doc_events = {
+    "Student Detail": {
+        "after_insert": "server.my_project.doctype.student_detail.student_detail.create_student_detail",
+        "on_update": "server.my_project.doctype.student_detail.student_detail.update_student_detail",
+        "on_trash": "server.my_project.doctype.student_detail.student_detail.delete_student_detail",
+
+    }
+}
+
 # Scheduled Tasks
 # ---------------
 
@@ -227,3 +241,10 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+# hooks.py
+
+# def get_api_methods():
+#     return {
+#         "get_users": "server.my_project.doctype.create_user.create_user.get_users",
+#         "create_user_from_student": "server.my_project.doctype.create_user.create_user.create_user_from_student"
+#     }
